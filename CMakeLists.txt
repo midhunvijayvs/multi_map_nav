@@ -233,7 +233,9 @@ add_dependencies(tf_broadcaster ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXP
 
 
 add_executable(wormhole_action_server src/wormhole_action_server.cpp src/wormhole_database.cpp)
+add_dependencies(wormhole_action_server ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(wormhole_action_server ${catkin_LIBRARIES} sqlite3)
+
 
 add_executable(wormhole_db_initializer src/wormhole_db_initializer.cpp src/wormhole_database.cpp)
 target_link_libraries(wormhole_db_initializer ${catkin_LIBRARIES} sqlite3)

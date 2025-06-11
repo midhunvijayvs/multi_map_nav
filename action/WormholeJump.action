@@ -1,0 +1,13 @@
+# Goal
+string source_map
+string target_map
+float32 x
+float32 y
+float32 yaw
+---
+# Result
+bool success
+string message
+---
+# Feedback
+float32 progress

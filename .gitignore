@@ -1,0 +1,11 @@
+# ROS build folders
+build/
+devel/
+install/
+*.pyc
+*.swp
+*.db
+*.log
+*.bag
+.idea/
+.vscode/

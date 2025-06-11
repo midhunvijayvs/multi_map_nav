@@ -1,0 +1,33 @@
+<launch>
+  <!-- Start roscore automatically if not already running -->
+  <arg name="run_id" value="$(anon run_id)" />
+
+<!-- Load URDF to parameter server -->
+<param name="robot_description" textfile="$(find multi_map_nav)/urdf/robot.urdf" />
+
+<!-- Start robot_state_publisher (provided by ROS) -->
+<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+  <!-- Start TF simulator (robot pose) -->
+  <node name="robot_tf_simulator" pkg="multi_map_nav" type="robot_tf_simulator" output="screen" />
+
+  <!-- Start wormhole marker visualizer -->
+  <node name="wormhole_marker_publisher" pkg="multi_map_nav" type="wormhole_marker_publisher" output="screen" />
+
+  <!-- TF Broadcaster for teleportation effect -->
+  <node pkg="multi_map_nav" type="tf_broadcaster" name="tf_broadcaster" output="screen" />
+
+  <!-- Optional: RViz Visualization -->
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find multi_map_nav)/rviz/wormhole.rviz" output="screen" required="true" />
+
+  <!-- Optional: rqt GUI -->
+  <!-- <node pkg="rqt_gui" type="rqt_gui" name="rqt_gui" output="screen" /> -->
+
+  <!-- Wormhole Action Server -->
+  <node pkg="multi_map_nav" type="wormhole_action_server" name="wormhole_action_server" output="screen" />
+
+  <!-- Wormhole Navigation Client -->
+ 
+  <node pkg="multi_map_nav" type="navigate_wormhole_client" name="navigate_wormhole_client" output="screen" />
+
+</launch>
